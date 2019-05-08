@@ -1,0 +1,142 @@
+{
+    "title": "Wavecell.Sms.Api",
+    "description": "This API allows Wavecell customers to originate request to send SMS messages anywhere in the World. The messages can be send individually or as a bulk request.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/wavecell.com/v1/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "http://api.wavecell.com/",
+                    "https://api.wavecell.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "username": {
+                "label": "Username (basicAuth)",
+                "viewClass": "TextFieldView",
+                "note": "HTTP/HTTPS Basic Authentication. The authentication uses the Wavecell AccountId as username"
+            },
+            "password": {
+                "label": "Password (basicAuth)",
+                "viewClass": "TextFieldView",
+                "note": "HTTP/HTTPS Basic Authentication. The authentication uses the Wavecell AccountId as username"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "SmsV1StatusGet": {
+            "main": "./lib/actions/SmsV1StatusGet.js",
+            "title": "SmsV1StatusGet",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SmsV1StatusGet.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SendManyMessages": {
+            "main": "./lib/actions/SendManyMessages.js",
+            "title": "SendManyMessages",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json",
+                        "application/json-patch+json": "application/json-patch+json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SendManyMessages.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SendManyMessagesInCompactForm": {
+            "main": "./lib/actions/SendManyMessagesInCompactForm.js",
+            "title": "SendManyMessagesInCompactForm",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json",
+                        "application/json-patch+json": "application/json-patch+json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SendManyMessagesInCompactForm.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "SendSingleMessage": {
+            "main": "./lib/actions/SendSingleMessage.js",
+            "title": "SendSingleMessage",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "text/json": "text/json",
+                        "application/json-patch+json": "application/json-patch+json"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/SendSingleMessage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

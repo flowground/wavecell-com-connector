@@ -1,0 +1,59 @@
+{
+    "type": "object",
+    "properties": {
+        "subAccountId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "clientBatchId": {
+                    "maxLength": 20,
+                    "type": "string"
+                },
+                "destinations": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "includeMessagesInResponse": {
+                    "type": "boolean"
+                },
+                "template": {
+                    "properties": {
+                        "encoding": {
+                            "enum": [
+                                "AUTO",
+                                "GSM7bit",
+                                "UNICODE"
+                            ],
+                            "type": "string"
+                        },
+                        "expiry": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "scheduled": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "source": {
+                            "maxLength": 16,
+                            "type": "string"
+                        },
+                        "text": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "destinations",
+                "template"
+            ],
+            "type": "object"
+        }
+    }
+}

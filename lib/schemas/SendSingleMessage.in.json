@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "subAccountId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "clientMessageId": {
+                    "maxLength": 20,
+                    "type": "string"
+                },
+                "destination": {
+                    "pattern": "^\\+{0,1}[1-9]{1}[0-9]{6,14}$",
+                    "type": "string"
+                },
+                "encoding": {
+                    "enum": [
+                        "AUTO",
+                        "GSM7bit",
+                        "UNICODE"
+                    ],
+                    "type": "string"
+                },
+                "expiry": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "scheduled": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "source": {
+                    "maxLength": 16,
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "destination"
+            ],
+            "type": "object"
+        }
+    }
+}
